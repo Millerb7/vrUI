@@ -3,10 +3,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class LeftHandGestureDetector : MonoBehaviour
 {
-    public XRController leftHandController = GameObject.find("LeftHand");
+    public XRController leftHandController = GameObject.Find("LeftHand").GetComponent<XRController>();
     // ~ 50 cm swipe distance
     public float swipeThreshold = 0.5f;
-    public GameObject uiPanel = GameObject.find("Panel");
+    public GameObject uiPanel = GameObject.Find("Panel");
     
     private Vector3 prevPosition;
     
@@ -31,7 +31,7 @@ public class LeftHandGestureDetector : MonoBehaviour
         RaycastHit hit;
         
         // if user is looking at ui
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(r, out hit))
         {
             if (hit.collider.gameObject == uiPanel)
             {
@@ -40,7 +40,7 @@ public class LeftHandGestureDetector : MonoBehaviour
                 // check if gesture was made
                 if (swipeDistance > swipeThreshold)
                 {
-                    uiPanel.setActive(false);
+                    uiPanel.SetActive(false);
                 }
             }
         }
